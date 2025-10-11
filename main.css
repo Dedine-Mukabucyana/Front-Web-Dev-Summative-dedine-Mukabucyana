@@ -1,0 +1,67 @@
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  line-height: 1.6;
+  background: #f8f8f8;
+  color: #222;
+}
+
+header, footer {
+  background: #1976d2;
+  color: white;
+  text-align: center;
+  padding: 1em;
+}
+
+nav a {
+  margin: 0 0.5em;
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover, nav a:focus {
+  text-decoration: underline;
+}
+
+section {
+  padding: 1em;
+  margin: 1em;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+section:hover {
+  transform: scale(1.01);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.5em;
+  border-bottom: 1px solid #ccc;
+}
+
+input, select, button {
+  padding: 0.5em;
+  margin: 0.2em 0;
+}
+
+mark {
+  background: yellow;
+}
+
+/* Responsive Breakpoints */
+@media (min-width: 768px){
+  nav { display:flex; justify-content:center; }
+  section { max-width: 700px; margin: 1.5em auto; }
+}
+
+@media (min-width: 1024px){
+  section { max-width: 900px; }
+  nav a { margin: 0 1em; }
+}
