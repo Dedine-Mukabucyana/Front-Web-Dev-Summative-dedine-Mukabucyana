@@ -5,131 +5,155 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>💰 Student Finance Tracker</title>
 <style>
-  body {font-family: Arial, sans-serif; text-align: center; background: #f9f9f9; margin: 0;}
-  header, footer {background: #000dff5e; color: white; padding: 10px;}
-  nav a {color: white; margin: 0 10px; text-decoration: none; font-weight: bold;}
-  nav a:hover {text-decoration: underline;}
-  section {display: none; padding: 20px; max-width: 700px; margin: 20px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
-  h2 {color: #000dff5e;}
-  table {margin: 20px auto; border-collapse: collapse; width: 90%;}
-  th, td {border: 1px solid #ddd; padding: 8px;}
-  th {background: #000dff5e; color: white;}
-  input, select, button {padding: 8px; margin: 5px; border-radius: 5px; border: 1px solid #ccc;}
-  button {background: #000dff5e; color: white; border: none; cursor: pointer;}
-  button:hover {background: #0015ff;}
+:root{
+  --bg:#f9f9f9;--text:#000;--card:#fff;
+  --primary:#8B4513;--hover:#5C2F1A;--table-border:#ddd
+}
+[data-theme="dark"]{
+  --bg:#121212;--text:#eee;--card:#1e1e1e;
+  --primary:#8B4513;--hover:#5C2F1A;--table-border:#333
+}
+body{font-family:Arial,sans-serif;text-align:center;
+  background:var(--bg);color:var(--text);margin:0;transition:.3s}
+header{background:var(--primary);color:#fff;padding:10px}
+footer{padding:10px} /* removed background color */
+nav a{color:#fff;margin:0 10px;text-decoration:none;font-weight:bold}
+nav a:hover{text-decoration:underline}
+section{display:none;padding:20px;max-width:700px;margin:20px auto;
+  background:var(--card);border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.1);
+  transition:.3s}
+h2{color:var(--primary)}
+table{margin:20px auto;border-collapse:collapse;width:90%}
+th,td{border:1px solid var(--table-border);padding:8px}
+th{background:var(--primary);color:#fff}
+input,select,button{padding:8px;margin:5px;border-radius:5px;border:1px solid #ccc}
+button{background:var(--primary);color:#fff;border:none;cursor:pointer}
+button:hover{background:var(--hover)}
 </style>
 </head>
 <body>
 <header>
-  <h1>💰 Student Finance Tracker</h1>
-  <nav>
-    <a onclick="show('about')">About</a>
-    <a onclick="show('dashboard')">Dashboard</a>
-    <a onclick="show('records')">Records</a>
-    <a onclick="show('settings')">Settings</a>
-  </nav>
+<h1>💰 Student Finance Tracker</h1>
+<nav>
+<a onclick="show('about')">About</a>
+<a onclick="show('dashboard')">Dashboard</a>
+<a onclick="show('records')">Records</a>
+<a onclick="show('settings')">Settings</a>
+</nav>
 </header>
 
 <main>
-  <section id="about">
-    <h2>About</h2>
-    <p>👋 Welcome to Student Finance Tracker!</p>
-    <p>Track your expenses, monitor income, and plan your budget.</p>
-    <ul style="text-align:left;display:inline-block;">
-      <li>Add and manage records</li>
-      <li> Dashboard with summary</li>
-      <li>Export and import data</li>
-    </ul>
-    <p>Created by <a href="https://github.com/Dedine-Mukabucyana/ALU-Student-Finance-Tracker.git" target="_blank">Dedine</a></p>
-  </section>
+<section id="about">
+<h2>About</h2>
+<p>👋 Welcome to Student Finance Tracker!</p>
+<p>Track your expenses, monitor income, and plan your budget.</p>
+<ul style="text-align:left;display:inline-block">
+<li>Add/manage records</li>
+<li>Dashboard summary</li>
+<li>Export/import data</li>
+<li>Toggle Light/Dark mode</li>
+</ul>
+<p>Created by <a href="https://github.com/Dedine-Mukabucyana/ALU-Student-Finance-Tracker.git" target="_blank">Dedine</a></p>
+</section>
 
-  <section id="dashboard">
-    <h2>Dashboard</h2>
-    <p><b>Total Records:</b> <span id="totalRecords">0</span></p>
-    <p><b>Total Income (Fr):</b> <span id="totalIncome">0.00</span></p>
-    <p><b>Total Expenses (Fr):</b> <span id="totalExpenses">0.00</span></p>
-    <p><b>Balance (Fr):</b> <span id="balance">0.00</span></p>
-  </section>
+<section id="dashboard">
+<h2>Dashboard</h2>
+<p><b>Total Records:</b> <span id="totalRecords">0</span></p>
+<p><b>Total Income (Fr):</b> <span id="totalIncome">0.00</span></p>
+<p><b>Total Expenses (Fr):</b> <span id="totalExpenses">0.00</span></p>
+<p><b>Balance (Fr):</b> <span id="balance">0.00</span></p>
+</section>
 
-  <section id="records">
-    <h2>Records</h2>
-    <table id="recordsTable">
-      <thead><tr><th>Description</th><th>Amount (Fr)</th><th>Category</th><th>Date</th><th>Type</th><th>Action</th></tr></thead>
-      <tbody></tbody>
-    </table>
-    <form id="recordForm">
-      <input id="description" placeholder="Description" required>
-      <input id="amount" type="number" placeholder="Amount" required>
-      <input id="category" placeholder="Category" required>
-      <input id="date" type="date" required>
-      <select id="type"><option>Expense</option><option>Income</option></select>
-      <button type="submit">Save</button>
-    </form>
-    <p id="formStatus"></p>
-  </section>
+<section id="records">
+<h2>Records</h2>
+<table id="recordsTable">
+<thead><tr><th>Description</th><th>Amount</th><th>Category</th><th>Date</th><th>Type</th><th>Action</th></tr></thead>
+<tbody></tbody>
+</table>
+<form id="recordForm">
+<input id="description" placeholder="Description" required>
+<input id="amount" type="number" placeholder="Amount" required>
+<input id="category" placeholder="Category" required>
+<input id="date" type="date" required>
+<select id="type"><option>Expense</option><option>Income</option></select>
+<button type="submit">Save</button>
+</form>
+<p id="formStatus"></p>
+</section>
 
-  <section id="settings">
-    <h2>Settings</h2>
-    <p>Export or import your data:</p>
-    <button id="exportBtn">⬇️ Export JSON</button><br><br>
-    <input type="file" id="importFile" accept=".json">
-  </section>
+<section id="settings">
+<h2>Settings</h2>
+<p>Export/import data:</p>
+<button id="exportBtn">⬇️ Export JSON</button><br><br>
+<input type="file" id="importFile" accept=".json"><br><br>
+<h3>🌓 Theme</h3>
+<button id="toggleThemeBtn"> Dark/Light Mode</button>
+</section>
 </main>
 
 <footer>© 2025 Student Finance Tracker</footer>
 
 <script>
-  const show = id => document.querySelectorAll('section').forEach(s => s.style.display = s.id === id ? 'block' : 'none');
-  const getRecords = () => JSON.parse(localStorage.getItem('records') || '[]');
-  const saveRecords = r => localStorage.setItem('records', JSON.stringify(r));
+const show=id=>document.querySelectorAll('section')
+.forEach(s=>s.style.display=s.id===id?'block':'none');
+const getRecords=()=>JSON.parse(localStorage.getItem('records')||'[]');
+const saveRecords=r=>localStorage.setItem('records',JSON.stringify(r));
 
-  function load() {
-    const recs = getRecords(), t = document.querySelector('#recordsTable tbody');
-    t.innerHTML = '';
-    recs.forEach((r,i)=>t.innerHTML+=`
-      <tr>
-        <td>${r.description}</td>
-        <td>${(+r.amount).toFixed(2)}</td>
-        <td>${r.category}</td>
-        <td>${r.date}</td>
-        <td>${r.type}</td>
-        <td><button onclick="del(${i})">Delete</button></td>
-      </tr>`);
-    updateDash();
-  }
+function load(){
+  const recs=getRecords(),t=document.querySelector('#recordsTable tbody');
+  t.innerHTML='';
+  recs.forEach((r,i)=>t.innerHTML+=`<tr>
+<td>${r.description}</td>
+<td>${(+r.amount).toFixed(2)}</td>
+<td>${r.category}</td>
+<td>${r.date}</td>
+<td>${r.type}</td>
+<td><button onclick="del(${i})">Delete</button></td></tr>`);
+  updateDash();
+}
 
-  function del(i){const r=getRecords();r.splice(i,1);saveRecords(r);load();}
-  function updateDash(){
-    const r=getRecords();let inc=0,exp=0;
-    r.forEach(x=>x.type==='Income'?inc+=+x.amount:exp+=+x.amount);
-    totalRecords.textContent=r.length;
-    totalIncome.textContent=inc.toFixed(2);
-    totalExpenses.textContent=exp.toFixed(2);
-    balance.textContent=(inc-exp).toFixed(2);
-  }
-    recordForm.onsubmit=e=>{
-    e.preventDefault();
-    const rec={description:description.value,amount:amount.value,category:category.value,date:date.value,type:type.value};
-    const data=getRecords();data.push(rec);saveRecords(data);
-    e.target.reset();formStatus.textContent='✅ Saved!';load();
-  };
+function del(i){let r=getRecords();r.splice(i,1);saveRecords(r);load()}
 
-  exportBtn.onclick=()=>{
-    const blob=new Blob([JSON.stringify(getRecords(),null,2)],{type:'application/json'});
-    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='records.json';a.click();
-  };
+function updateDash(){
+  const r=getRecords();let inc=0,exp=0;
+  r.forEach(x=>x.type==='Income'?inc+=+x.amount:exp+=+x.amount);
+  totalRecords.textContent=r.length;
+  totalIncome.textContent=inc.toFixed(2);
+  totalExpenses.textContent=exp.toFixed(2);
+  balance.textContent=(inc-exp).toFixed(2);
+}
 
-  importFile.onchange=e=>{
-    const f=e.target.files[0];if(!f)return;
-    const r=new FileReader();r.onload=ev=>{
-      try{const data=JSON.parse(ev.target.result);
-        if(!Array.isArray(data))throw 0;
-        saveRecords(data);load();alert('✅ Imported!');}
-      catch{alert('⚠️ Invalid JSON');}
-    };r.readAsText(f);
-  };
+recordForm.onsubmit=e=>{
+  e.preventDefault();
+  const rec={description:description.value,amount:amount.value,
+    category:category.value,date:date.value,type:type.value};
+  const data=getRecords();data.push(rec);saveRecords(data);
+  e.target.reset();formStatus.textContent='✅ Saved!';load();
+};
 
-  window.onload=()=>{show('about');load();}
+exportBtn.onclick=()=>{
+  const blob=new Blob([JSON.stringify(getRecords(),null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='records.json';a.click();
+};
+
+importFile.onchange=e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    try{const data=JSON.parse(ev.target.result);
+    if(!Array.isArray(data))throw 0;saveRecords(data);load();alert('✅ Imported!')}
+    catch{alert('⚠️ Invalid JSON')}
+  };r.readAsText(f);
+};
+
+const toggleThemeBtn=document.getElementById('toggleThemeBtn');
+const currentTheme=localStorage.getItem('theme')||'light';
+document.documentElement.dataset.theme=currentTheme;
+toggleThemeBtn.onclick=()=>{const newTheme=document.documentElement.dataset.theme==='light'?'dark':'light';
+document.documentElement.dataset.theme=newTheme;localStorage.setItem('theme',newTheme)};
+
+window.onload=()=>{show('about');load()};
 </script>
 </body>
 </html>
