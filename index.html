@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💰 Student Finance Tracker</title>
+<title> Student Finance Tracker</title>
 <style>
 :root{
   --bg:#f9f9f9;--text:#000;--card:#fff;
@@ -33,7 +33,7 @@ button:hover{background:var(--hover)}
 </head>
 <body>
 <header>
-<h1>💰 Student Finance Tracker</h1>
+<h1> Student Finance Tracker</h1>
 <nav>
 <a onclick="show('about')">About</a>
 <a onclick="show('dashboard')">Dashboard</a>
@@ -41,11 +41,10 @@ button:hover{background:var(--hover)}
 <a onclick="show('settings')">Settings</a>
 </nav>
 </header>
-
 <main>
 <section id="about">
 <h2>About</h2>
-<p>👋 Welcome to Student Finance Tracker!</p>
+<p> Welcome to Student Finance Tracker!</p>
 <p>Track your expenses, monitor income, and plan your budget.</p>
 <ul style="text-align:left;display:inline-block">
 <li>Add/manage records</li>
@@ -80,19 +79,16 @@ button:hover{background:var(--hover)}
 </form>
 <p id="formStatus"></p>
 </section>
-
 <section id="settings">
 <h2>Settings</h2>
 <p>Export/import data:</p>
 <button id="exportBtn">⬇️ Export JSON</button><br><br>
 <input type="file" id="importFile" accept=".json"><br><br>
-<h3>🌓 Theme</h3>
+<h3>Theme</h3>
 <button id="toggleThemeBtn"> Dark/Light Mode</button>
 </section>
 </main>
-
 <footer>© 2025 Student Finance Tracker</footer>
-
 <script>
 const show=id=>document.querySelectorAll('section')
 .forEach(s=>s.style.display=s.id===id?'block':'none');
@@ -111,7 +107,6 @@ function load(){
 <td><button onclick="del(${i})">Delete</button></td></tr>`);
   updateDash();
 }
-
 function del(i){let r=getRecords();r.splice(i,1);saveRecords(r);load()}
 
 function updateDash(){
@@ -122,7 +117,6 @@ function updateDash(){
   totalExpenses.textContent=exp.toFixed(2);
   balance.textContent=(inc-exp).toFixed(2);
 }
-
 recordForm.onsubmit=e=>{
   e.preventDefault();
   const rec={description:description.value,amount:amount.value,
@@ -130,13 +124,11 @@ recordForm.onsubmit=e=>{
   const data=getRecords();data.push(rec);saveRecords(data);
   e.target.reset();formStatus.textContent='✅ Saved!';load();
 };
-
 exportBtn.onclick=()=>{
   const blob=new Blob([JSON.stringify(getRecords(),null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
   a.download='records.json';a.click();
 };
-
 importFile.onchange=e=>{
   const f=e.target.files[0];if(!f)return;
   const r=new FileReader();
@@ -146,13 +138,11 @@ importFile.onchange=e=>{
     catch{alert('⚠️ Invalid JSON')}
   };r.readAsText(f);
 };
-
 const toggleThemeBtn=document.getElementById('toggleThemeBtn');
 const currentTheme=localStorage.getItem('theme')||'light';
 document.documentElement.dataset.theme=currentTheme;
 toggleThemeBtn.onclick=()=>{const newTheme=document.documentElement.dataset.theme==='light'?'dark':'light';
 document.documentElement.dataset.theme=newTheme;localStorage.setItem('theme',newTheme)};
-
 window.onload=()=>{show('about');load()};
 </script>
 </body>
