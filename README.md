@@ -27,7 +27,8 @@ scripts/
  ├─ UI.js
  ├─ validators.js
  └─ search.js
-
+## Demo video
+https://youtu.be/2FAUM4robv4
 ## Technologies Used
 - HTML5 (semantic)
 - CSS3 (Flexbox, media queries, transitions)
