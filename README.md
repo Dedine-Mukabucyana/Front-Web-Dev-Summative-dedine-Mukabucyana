@@ -9,16 +9,25 @@ This app allows students to track income and expenses, view a dashboard summary,
  responsive design for mobile, tablet, and desktop
 ## Keyboard Navigation & Accessibility
  Navigate using Tab/Shift+Tab
+## Regex Catalog
+Date  `/^\d{4}-(0[1-9] 1[0-2])-(0[1-9]  [12]\d
 ## Setup
-1. Clone the repo:
+1. Clone the repo
+2. git clone https://github.com/Dedine-Mukabucyana/Front-Web-Dev-Summative-dedine-Mukabucyana.git
+3. Open index.html in any modern browser.
+## File structure
+index.html
+README.md
+seed.json
+styles/
+ └─ main.css
+scripts/
+ ├─ storage.js
+ ├─ state.js
+ ├─ UI.js
+ ├─ validators.js
+ └─ search.js
 
-git clone https://github.com/Dedine-Mukabucyana/ALU-Student-Finance-Tracker.git
-
-Open index.html in any modern browser.
-
-Demo Link
-
-Screenshots
 ## Technologies Used
 - HTML5 (semantic)
 - CSS3 (Flexbox, media queries, transitions)
